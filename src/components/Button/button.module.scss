@@ -1,0 +1,39 @@
+@import '@/app/styles/variables.scss';
+@import '@/app/styles/prefix.scss';
+
+.button {
+   position: relative;
+   background-color: $primary-color;
+   @include prefix(background, $blue-gradient);
+   color: $white;
+   border-radius: 50px;
+   padding: 2rem 5.5rem;
+   font-family: $main-font;
+   font-weight: 700;
+   letter-spacing: 0.1rem;
+   z-index: 10;
+   overflow: hidden;
+   transition: all 0.3s ease-out;
+
+   &::before {
+      content: '';
+      width: 0;
+      height: 200%;
+      position: absolute;
+      top: -50%;
+      left: 0;
+      rotate: -15deg;
+      background-color: $white;
+      transition: .4s ease;
+      display: block;
+      z-index: -10;
+   }
+
+   &:hover,
+   &:active {
+      color: $black2;
+   }
+   &:hover::before {
+      width: 100%;
+   }
+}

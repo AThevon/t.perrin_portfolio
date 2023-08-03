@@ -1,95 +1,98 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import { useRef, useState } from "react";
+import Header from "@/components/Header/header";
+import styles from "./home.module.scss";
+import Image from "next/image";
+import Button from "@/components/Button/button";
+import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
+import TiltCard from "@/components/TiltCard/tiltCard";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+   const parallax = useRef<IParallax>(null);
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+   const scroll = (to: number) => {
+      if (parallax.current) {
+         parallax.current.scrollTo(to);
+      }
+   };
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+   return (
+      <main>
+         <Parallax pages={3} ref={parallax}>
+               <Header />
+            <ParallaxLayer offset={0} speed={0.2}>
+               <section className={styles.hero}>
+                  <div className={styles.description}>
+                     <div className={styles.content}>
+                        <h2>Théo</h2>
+                        <h2>Perrin</h2>
+                        <h3>Chef de projet digital</h3>
+                        <p>
+                           Curieux, doté d'une grande aisance rédactionnelle,
+                           réactif et créatif, je recherche une entreprise dans
+                           le secteur artistique.
+                        </p>
+                        <Button type="button" onClick={() => scroll(2)}>
+                           Prendre contact
+                        </Button>
+                     </div>
+                  </div>
+                  <div className={styles.image}>
+                     <Image
+                        src="/img-hero.png"
+                        alt="Théo Perrin"
+                        width={500}
+                        height={500}
+                     />
+                  </div>
+               </section>
+            </ParallaxLayer>
+            <ParallaxLayer offset={1} speed={0}>
+               <section className={styles.features}>
+                     <TiltCard className={styles.tilt_card}>
+                        <div className={styles.card}>
+                           <h2>Projets</h2>
+                           <p>
+                              Lorem ipsum dolor sit amet consectetur
+                              adipisicing elit. Quisquam, voluptatum.
+                           </p>
+                        </div>
+                     </TiltCard>
+                     <TiltCard className={styles.tilt_card}>
+                        <div className={styles.card}>
+                           <h2>Projets</h2>
+                           <p>
+                              Lorem ipsum dolor sit amet consectetur
+                              adipisicing elit. Quisquam, voluptatum.
+                           </p>
+                        </div>
+                     </TiltCard>
+                     <TiltCard className={styles.tilt_card}>
+                        <div className={styles.card}>
+                           <h2>Projets</h2>
+                           <p>
+                              Lorem ipsum dolor sit amet consectetur
+                              adipisicing elit. Quisquam, voluptatum.
+                           </p>
+                        </div>
+                     </TiltCard>
+               </section>
+            </ParallaxLayer>
+            <ParallaxLayer offset={1.95} speed={0.2}>
+               <section className={styles.contact}>
+                  <h2>Théo</h2>
+                  <h2>Perrin</h2>
+                  <h3>Chef de projet digital</h3>
+                  <p>
+                     Curieux, doté d'une grande aisance rédactionnelle, réactif
+                     et créatif, je recherche une entreprise dans le secteur
+                     artistique.
+                  </p>
+               </section>
+            </ParallaxLayer>
+         </Parallax>
+      </main>
+   );
 }
