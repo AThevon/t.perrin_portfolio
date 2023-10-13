@@ -35,7 +35,9 @@ export default function RootLayout({
 }) {
    return (
       <html lang="fr">
-         <body className={`${mainFont.variable} ${secondFont.variable}`}>{children}</body>
+         <body className={`${mainFont.variable} ${secondFont.variable}`}>
+            {children}
+         </body>
       </html>
-   )
+   );
 }
