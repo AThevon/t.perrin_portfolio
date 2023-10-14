@@ -5,9 +5,9 @@ import styles from "./header.module.scss";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
-
-const Header: React.FC = () => {
+const Header = () => {
    const path = usePathname();
+   console.log(path);
 
    const links = [
       {
