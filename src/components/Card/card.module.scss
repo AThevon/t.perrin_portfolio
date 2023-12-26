@@ -1,0 +1,26 @@
+.card {
+   background-color: #d97171;
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+   height: 24rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   cursor: pointer;
+   a {
+      display: flex;
+      position: relative;
+      gap: 2rem;
+      @media (max-width: 1024px) {
+         flex-direction: column;
+         align-items: center;
+      }
+      img {
+         height: 6rem;
+         margin: 4rem;
+         object-fit: contain;
+      }
+   }
+}
